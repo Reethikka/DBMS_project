@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>Results</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "light2",
+            animationEnabled: true,
+            title:{
+                text: "Vote distribution"
+            },
+            data: [{
+                type: "pie",
+                startAngle: -90,
+                yValueFormatString: "#,###",
+                dataPoints: {{ datapoints | safe }}
+            }]
+        });
+        chart.render();
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'polls/images/logo.png' %}" alt="Logo" />
+        </div>
+        <h1>EXPRESS POLL</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'polls:index' %}">Home</a></li>
+                <li><a href="{% url 'polls:about' %}">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Vote counts:</h2>
+        <h2>{{question.question_text}}</h2>
+        <ul>
+            {% for choice in question.choice_set.all %}
+                <li>{{choice.choice_text}} -- {{choice.votes}} vote{{choice.votes|pluralize}}</li>
+            {% endfor %}
+        </ul>
+        <h3>Thank you for voting and providing us valuable insights</h3>
+        <div id="chartContainer" style="width: 100%; height: 360px;"></div>
+        <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+    </main>
+    <footer>
+        <p>&copy;2024 Polling App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
+    

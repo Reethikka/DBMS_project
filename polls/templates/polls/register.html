@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style_1.css' %}">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+            const firebaseConfig = {
+        apiKey: "your-api-key",
+        authDomain: "your-project-id.firebaseapp.com",
+        projectId: "your-project-id",
+        storageBucket: "your-project-id.appspot.com",
+        messagingSenderId: "your-sender-id",
+        appId: "your-app-id",
+        measurementId: "your-measurement-id"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.register = function() {
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log("User registered:", user);
+                    // Redirect to login or home page
+                    window.location.href = "{% url 'polls:login' %}"; // Change this as needed
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    console.error("Error registering:", errorMessage);
+                    document.getElementById("error-message").innerText = errorMessage; 
+                });
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+    <h2>Register</h2>
+    <div id="error-message" style="color: red;"></div>
+    <form onsubmit="event.preventDefault(); register();">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'polls:login'%}">Login here</a></p>
+    </div>
+</body>
+</html>

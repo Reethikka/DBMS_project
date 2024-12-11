@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Polls</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'polls/images/logo.png' %}" alt="Logo" />
+        </div>
+        <h1>EXPRESS POLL</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'polls:index' %}">Home</a></li>
+                <li><a href="{% url 'polls:about' %}">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Why Choose Our Polling App?</h2>
+            <p>Our polling app provides a seamless experience for gathering feedback and making informed decisions. With a user-friendly interface and real-time results, you can engage your team like never before.</p>
+
+            <h3>Features:</h3>
+            <ul>
+                <li>User-friendly interface for quick poll creation.</li>
+                <li>Multiple question types to suit your needs.</li>
+        	<li>Real-time results for instant feedback.</li>
+        	<li>Anonymity options to ensure honest responses.</li>
+        	<li>Customizable polls with your branding.</li>
+    	    </ul>
+
+            <h3>Use Cases:</h3>
+            <p>From corporate meetings to classroom engagement, our app is versatile enough to fit various contexts, ensuring your voice is heard in every setting.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy;2024 Polling App. All rights reserved.</p>
+    </footer>
+</body>

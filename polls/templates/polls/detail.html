@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device_width initial_scale=1.0">
+    <title>{{question.question_text}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'polls/images/logo.png' %}" alt="Logo" />
+        </div>
+        <h1>EXPRESS POLL</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'polls:index' %}">Home</a></li>
+                <li><a href="{% url 'polls:about' %}">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2>Poll voting</h2>
+    <main>
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend><h2>{{question.question_text}}</h2><legend>
+                {% if error_message %}<p><strong>{{error_message}}</strong></p>{% endif %}
+                {% for choice in question.choice_set.all %}
+                    <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
+                    <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br>
+                {% endfor %}
+            </fieldset>
+            <input type="submit" value="Vote"> 
+        </form>
+    </main>
+    <footer>
+        <p>&copy;2024 Polling App. All rights reserved.</p>
+    </footer>
+</body>
+</html>

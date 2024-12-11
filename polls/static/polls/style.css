@@ -1,0 +1,118 @@
+li a {
+    color: green; /* Unvisited link */
+}
+
+li a:visited {
+    color: darkgreen; /* Visited link */
+}
+
+li a:hover {
+    color: lightgreen; /* Hover state */
+}
+
+li a:active {
+    color: lime; /* Active state */
+}
+
+body, h1, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Modern font for a clean look */
+    background-color: #f0f4f8; /* Soft background color */
+    color: #333; /* Dark text for contrast */
+    line-height: 1.6; /* Improved line spacing */
+    padding: 20px; /* Padding around the body */
+}
+
+h1 {
+    text-align: center; /* Center the heading */
+    color: #faee4d; /* Violet color for the heading */
+    margin-bottom: 30px; /* Space below the heading */
+    font-size: 2.5em; /* Larger font size for emphasis */
+}
+
+ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove padding */
+}
+
+li {
+    background-color: #ffffff; /* White background for list items */
+    border: 1px solid #ddd; /* Light border for definition */
+    border-radius: 8px; /* Rounded corners */
+    margin: 15px 0; /* Space between list items */
+    padding: 15px; /* Padding inside list items */
+    transition: box-shadow 0.3s; /* Smooth shadow change on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+li:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+header {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between header content and nav */
+    align-items: center; /* Center items vertically */
+    background-color: #4CAF50; /* Header background color */
+    color: white; /* Text color in header */
+    padding: 10px 20px; /* Padding around header */
+}
+
+nav {
+    margin-left: auto; /* Push the nav to the right */
+}
+
+nav ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    display: flex; /* Use flexbox for horizontal layout */
+}
+
+nav ul li {
+    margin: 0 15px; /* Space between items */
+}
+
+nav ul li a {
+    color: white; /* Link color in header */
+    text-decoration: none; /* No underline for links */
+    font-weight: bold; /* Bold links */
+}
+
+
+footer {
+    background-color: #333; /* Footer background color */
+    color: white; /* Text color in footer */
+    text-align: center; /* Centered text */
+    padding: 15px; /* Padding around footer */
+    position: relative; /* To ensure it stays at the bottom */
+    bottom: 0; /* Align to the bottom */
+    width: 100%; /* Full width */
+    margin-top: 20px; /* Space above footer */
+}
+
+html, body {
+    height: 100%; /* Make the html and body take up the full height */
+    margin: 0; /* Remove default margin */
+}
+
+body {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Stack children vertically */
+}
+
+main {
+    flex: 1; /* Allow the main content to grow and fill space */
+}
+
+.logo img {
+    width: 150px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+header h1 {
+    

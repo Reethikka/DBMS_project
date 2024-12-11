@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style_1.css' %}">
+    <script type="module">
+        // Your Firebase configuration
+        const firebaseConfig = {
+        apiKey: "your-api-key",
+        authDomain: "your-project-id.firebaseapp.com",
+        projectId: "your-project-id",
+        storageBucket: "your-project-id.appspot.com",
+        messagingSenderId: "your-sender-id",
+        appId: "your-app-id",
+        measurementId: "your-measurement-id"
+        };
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.logout = function() {
+            signOut(auth).then(() => {
+                console.log("User signed out.");
+                // Redirect to login page or home page
+                window.location.href = "{% url 'polls:register' %}"; // Change this to your login page URL
+            }).catch((error) => {
+                console.error("Error signing out:", error);
+                alert("Error signing out: " + error.message); // Optional feedback to user
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+    <h2>Logout</h2>
+    <p>Are you sure you want to log out?</p>
+    <button onclick="logout()">Logout</button>
+    </div>
+</body>
+</html>
+

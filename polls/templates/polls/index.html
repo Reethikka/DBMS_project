@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Polls</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <script type="module">
+    // Your Firebase configuration
+        // Your Firebase configuration
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries         
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+    	apiKey: "your-api-key",
+    	authDomain: "your-project-id.firebaseapp.com",
+    	projectId: "your-project-id",
+    	storageBucket: "your-project-id.appspot.com",
+    	messagingSenderId: "your-sender-id",
+    	appId: "your-app-id",
+    	measurementId: "your-measurement-id"
+	};
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            console.log("User is signed in:", user);
+            // Display user information or provide logout option
+        } else {
+            console.log("No user is signed in.");
+            // Optionally redirect to login page
+            window.location.href = "{% url 'polls:login' %}"; // Uncomment this to force login
+        }
+    });
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'polls/images/logo.png' %}" alt="Logo" />
+        </div>
+        <h1>EXPRESS POLL</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'polls:index' %}">Home</a></li>
+                <li><a href="{% url 'polls:about' %}">About</a></li>
+                <li><a href="{% url 'polls:logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Latest Polls on Country-Capital</h1>
+        {% if latest_question_list %}
+            <ul>
+            {% for question in latest_question_list %}
+                <li><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a></li>
+            {% endfor %}
+            </ul>
+            <img src="{% static 'polls/images/poll.png' %}" alt="Description" class="list-image">
+        {% else %}
+            <p>No polls are available</p>
+        {% endif %}
+    </main>
+    <footer>
+        <p>&copy;2024 Polling App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
