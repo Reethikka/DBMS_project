@@ -10,3 +10,6 @@ Authentication service is provided by Firebase.
 Google Firebase
 
 Django Polling app tutorial
+
+## Note
+After registering, Firebase will show the configuration object that will be needed to be replaced in the template files provided. 
